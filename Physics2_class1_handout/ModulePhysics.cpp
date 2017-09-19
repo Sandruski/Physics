@@ -5,6 +5,14 @@
 
 // TODO 1: Include Box 2 header and library
 
+#include "Box2D/Box2D/Box2D.h" //header
+
+#ifdef _DEBUG //if _DEBUG is defined...
+#pragma comment( lib, "Box2D/libx86/Debug/Box2D.lib" ) //debug library
+#else //if _DEBUG is not defined, then use Release
+#pragma comment( lib, "Box2D/libx86/Release/Box2D.lib" ) //release library
+#endif
+
 ModulePhysics::ModulePhysics(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	debug = true;
@@ -24,6 +32,8 @@ bool ModulePhysics::Start()
 	// - You need init the world in the constructor
 	// - Remember to destroy the world after using it
 
+	b2Vec2 gravity(0.0f, -10.0f);
+	b2World world = new b2World(gravity);
 
 	// TODO 4: Create a a big static circle as "ground"
 	return true;
