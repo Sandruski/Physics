@@ -1,0 +1,19 @@
+﻿  ModulePhysics.cpp
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(112): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(125): warning C4244: '=': conversion from 'float32' to 'int', possible loss of data
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(126): warning C4244: '=': conversion from 'float32' to 'int', possible loss of data
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(128): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(129): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'a': unreferenced local variable
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'e': unreferenced local variable
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'b': unreferenced local variable
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'f': unreferenced local variable
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'j': unreferenced local variable
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'i': unreferenced local variable
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'c': unreferenced local variable
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'h': unreferenced local variable
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'g': unreferenced local variable
+c:\users\disob\documents\github\physics\physics2_class1_handout\physics2_class1_handout\modulephysics.cpp(123): warning C4101: 'd': unreferenced local variable
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\cmath(30): warning C4577: 'noexcept' used with no exception handling mode specified; termination on exception is not guaranteed. Specify /EHsc
+  SDL Game.vcxproj -> C:\Users\disob\Documents\GitHub\Physics\Physics2_class1_handout\Physics2_class1_handout\Debug\Physics 2 Class 1 Handout.exe
+  SDL Game.vcxproj -> C:\Users\disob\Documents\GitHub\Physics\Physics2_class1_handout\Physics2_class1_handout\Debug\Physics 2 Class 1 Handout.pdb (Full PDB)
