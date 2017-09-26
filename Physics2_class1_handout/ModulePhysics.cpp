@@ -3,6 +3,26 @@
 #include "ModulePhysics.h"
 #include "math.h"
 
+/*
+Preprocesador: gestiona los #
+-#include <stio.h>: pega el código
+-#define R 5: se guarda el valor. Si más adelante se declara una variable x = R; se encarga de sustituir R por 5
+
+cpp -> COMPILAR -> obj -> LINKADO -> exe (se guarda en memoria). No tenemos en cuenta los .h en este proceso, solo los cpp
+Errores de linkado: unresolved external, repeated symbol...
+*/
+
+// b2world - b2body1, b2body2... - b2fixtures - b2shape
+
+/*
+-Edges: para hacer las plataformas de tu juego (suelo).
+-Chains: cadenas de edges.
+
+-> Crear Chains antes que un Edge detrás de otro Edge, etc. para evitar Colisiones Fantasma
+*/
+
+
+
 // TODO 1: Include Box 2 header and library
 
 #include "Box2D/Box2D/Box2D.h" //header
@@ -119,8 +139,6 @@ update_status ModulePhysics::PostUpdate()
 					b2Vec2 pos = f->GetBody()->GetPosition();
 
 					SDL_Rect rect;
-
-					int a, b, c, d, e, f, g, h, i, j;
 
 					rect.x = METERS_TO_PIXELS(pos.x) - METERS_TO_PIXELS(abs(shape->m_vertices[0].x));
 					rect.y = METERS_TO_PIXELS(pos.y) - METERS_TO_PIXELS(abs(shape->m_vertices[0].y));
