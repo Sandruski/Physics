@@ -59,5 +59,5 @@ public:
 		41, 0
 	};
 
-	p2List<BodyHolder*> circles;
+	p2List<BodyHolder*> shapes;
 };

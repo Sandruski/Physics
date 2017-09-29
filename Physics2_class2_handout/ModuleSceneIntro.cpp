@@ -6,6 +6,8 @@
 #include "ModuleTextures.h"
 #include "ModulePhysics.h"
 
+#include <iostream>
+
 #include "Box2D/Box2D/Box2D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -28,7 +30,6 @@ bool ModuleSceneIntro::Start()
 	box = App->textures->Load("pinball/crate.png");
 	rick = App->textures->Load("pinball/rick_head.png");
 
-
 	return ret;
 }
 
@@ -46,32 +47,68 @@ update_status ModuleSceneIntro::Update()
 	// TODO 5: Move all creation of bodies on 1,2,3 key press here in the scene
 	
 	// On space bar press, create a circle on mouse position
-	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+
+	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) //Dynamic Circle
 	{
-		circles.add(App->physics->CreateCircle(App->input->GetMouseX(), App->input->GetMouseY(), 50));
+		shapes.add(App->physics->CreateDCircle(App->input->GetMouseX(), App->input->GetMouseY(), 25));
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) //Static Circle
 	{
-		App->physics->CreateRectangle(App->input->GetMouseX(), App->input->GetMouseY(), 50, 50);
+		shapes.add(App->physics->CreateSCircle(App->input->GetMouseX(), App->input->GetMouseY(), 25));
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) //Kinematic Circle
 	{
-		App->physics->CreateChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 66);
+		shapes.add(App->physics->CreateKCircle(App->input->GetMouseX(), App->input->GetMouseY(), 25));
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) //Dynamic Rectangle
+	{
+		shapes.add(App->physics->CreateDRectangle(App->input->GetMouseX(), App->input->GetMouseY(), 50, 25));
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN) //Static Rectangle
+	{
+		shapes.add(App->physics->CreateSRectangle(App->input->GetMouseX(), App->input->GetMouseY(), 50, 25));
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN) //Kinematic Rectangle
+	{
+		shapes.add(App->physics->CreateKRectangle(App->input->GetMouseX(), App->input->GetMouseY(), 50, 25));
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN) //Dynamic Chain
+	{
+		shapes.add(App->physics->CreateDChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 66));
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN) //Static Chain
+	{
+		shapes.add(App->physics->CreateSChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 66));
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN) //Kinematic Chain
+	{
+		shapes.add(App->physics->CreateKChain(App->input->GetMouseX(), App->input->GetMouseY(), rick_head, 66));
 	}
 
 	// TODO 7: Draw all the circles using "circle" texture
 
 		p2List_item<BodyHolder*>* item;
-		item = circles.getFirst();
+		item = shapes.getFirst();
 
 		while (item != NULL)
 		{
 			b2Vec2 position = item->data->Position();
 
-			App->renderer->Blit(circle, position.x, position.y);
-
+			if (item->data->GetType() == b2Shape::e_circle)
+				App->renderer->Blit(circle, position.x - METERS_TO_PIXELS(item->data->GetRadius()), position.y - METERS_TO_PIXELS(item->data->GetRadius()), NULL, item->data->GetRotation(), position.x, position.y);
+			if (item->data->GetType() == b2Shape::e_polygon) 
+				App->renderer->Blit(box, position.x - METERS_TO_PIXELS(item->data->Get_hx()), position.y - METERS_TO_PIXELS(item->data->Get_hy()), NULL, item->data->GetRotation(), position.x, position.y);
+			if (item->data->GetType() == b2Shape::e_chain)
+				App->renderer->Blit(rick, position.x - METERS_TO_PIXELS(item->data->GetRadius()), position.y - METERS_TO_PIXELS(item->data->GetRadius()));
+			
 			item = item->next;
 		}
 

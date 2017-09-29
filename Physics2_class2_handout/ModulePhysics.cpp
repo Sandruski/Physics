@@ -155,10 +155,51 @@ bool ModulePhysics::CleanUp()
 	return true;
 }
 
-BodyHolder* ModulePhysics::CreateCircle(int mouse_x, int mouse_y, int rad) {
+//Creation of Circle
+BodyHolder* ModulePhysics::CreateDCircle(int mouse_x, int mouse_y, int rad) {
 
 	b2BodyDef body;
 	body.type = b2_dynamicBody;
+	float radius = PIXEL_TO_METERS(rad);
+	body.position.Set(PIXEL_TO_METERS(mouse_x), PIXEL_TO_METERS(mouse_y));
+
+	b2Body* b = world->CreateBody(&body);
+
+	b2CircleShape shape;
+	shape.m_radius = radius;
+	b2FixtureDef fixture;
+	fixture.shape = &shape;
+
+	fixture.density = 1.0f;
+
+	b->CreateFixture(&fixture);
+
+	BodyHolder* a = new BodyHolder(b);
+	return a;
+}
+BodyHolder* ModulePhysics::CreateSCircle(int mouse_x, int mouse_y, int rad) {
+
+	b2BodyDef body;
+	body.type = b2_staticBody;
+	float radius = PIXEL_TO_METERS(rad);
+	body.position.Set(PIXEL_TO_METERS(mouse_x), PIXEL_TO_METERS(mouse_y));
+
+	b2Body* b = world->CreateBody(&body);
+
+	b2CircleShape shape;
+	shape.m_radius = radius;
+	b2FixtureDef fixture;
+	fixture.shape = &shape;
+
+	b->CreateFixture(&fixture);
+
+	BodyHolder* a = new BodyHolder(b);
+	return a;
+}
+BodyHolder* ModulePhysics::CreateKCircle(int mouse_x, int mouse_y, int rad) {
+
+	b2BodyDef body;
+	body.type = b2_kinematicBody;
 	float radius = PIXEL_TO_METERS(rad);
 	body.position.Set(PIXEL_TO_METERS(mouse_x), PIXEL_TO_METERS(mouse_y));
 
@@ -175,7 +216,8 @@ BodyHolder* ModulePhysics::CreateCircle(int mouse_x, int mouse_y, int rad) {
 	return a;
 }
 
-BodyHolder* ModulePhysics::CreateRectangle(int mouse_x, int mouse_y, int hx, int hy) {
+//Creation of Rectangle
+BodyHolder* ModulePhysics::CreateDRectangle(int mouse_x, int mouse_y, int hx, int hy) {
 	
 	// TODO 1: When pressing 2, create a box on the mouse position
 
@@ -195,17 +237,72 @@ BodyHolder* ModulePhysics::CreateRectangle(int mouse_x, int mouse_y, int hx, int
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
 
+	fixture.density = 1.0f;
+
 	b->CreateFixture(&fixture);
 
 	// TODO 2: To have the box behave normally, set fixture's density to 1.0f
 
-	fixture.density = 1.0f;
+	BodyHolder* a = new BodyHolder(b);
+	return a;
+}
+BodyHolder* ModulePhysics::CreateSRectangle(int mouse_x, int mouse_y, int hx, int hy) {
+
+	// TODO 1: When pressing 2, create a box on the mouse position
+
+	b2BodyDef body;
+	body.type = b2_staticBody;
+
+	//float hx = rand() % 3 + 1;
+	//float hy = rand() % 3 + 1;
+
+	body.position.Set(PIXEL_TO_METERS(mouse_x), PIXEL_TO_METERS(mouse_y));
+
+	b2Body* b = world->CreateBody(&body);
+
+	b2PolygonShape shape;
+	shape.SetAsBox(PIXEL_TO_METERS(hx), PIXEL_TO_METERS(hy));
+
+	b2FixtureDef fixture;
+	fixture.shape = &shape;
+
+	b->CreateFixture(&fixture);
+
+	// TODO 2: To have the box behave normally, set fixture's density to 1.0f
+
+	BodyHolder* a = new BodyHolder(b);
+	return a;
+}
+BodyHolder* ModulePhysics::CreateKRectangle(int mouse_x, int mouse_y, int hx, int hy) {
+
+	// TODO 1: When pressing 2, create a box on the mouse position
+
+	b2BodyDef body;
+	body.type = b2_kinematicBody;
+
+	//float hx = rand() % 3 + 1;
+	//float hy = rand() % 3 + 1;
+
+	body.position.Set(PIXEL_TO_METERS(mouse_x), PIXEL_TO_METERS(mouse_y));
+
+	b2Body* b = world->CreateBody(&body);
+
+	b2PolygonShape shape;
+	shape.SetAsBox(PIXEL_TO_METERS(hx), PIXEL_TO_METERS(hy));
+
+	b2FixtureDef fixture;
+	fixture.shape = &shape;
+
+	b->CreateFixture(&fixture);
+
+	// TODO 2: To have the box behave normally, set fixture's density to 1.0f
 
 	BodyHolder* a = new BodyHolder(b);
 	return a;
 }
 
-BodyHolder* ModulePhysics::CreateChain(int mouse_x, int mouse_y, int points[], int index) {
+//Creation of Chain
+BodyHolder* ModulePhysics::CreateDChain(int mouse_x, int mouse_y, int points[], int index) {
 	
 	// TODO 3: Create a chain shape using those vertices
 	// remember to convert them from pixels to meters!
@@ -236,12 +333,79 @@ BodyHolder* ModulePhysics::CreateChain(int mouse_x, int mouse_y, int points[], i
 		delete[] vertices;
 	vertices = nullptr;
 
-	//¿Por qué la cara de Rick no me la pinta en el centro del ratón?
+	BodyHolder* a = new BodyHolder(b);
+	return a;
+}
+BodyHolder* ModulePhysics::CreateSChain(int mouse_x, int mouse_y, int points[], int index) {
+
+	// TODO 3: Create a chain shape using those vertices
+	// remember to convert them from pixels to meters!
+
+	b2BodyDef body;
+	body.type = b2_staticBody;
+
+	body.position.Set(PIXEL_TO_METERS(mouse_x), PIXEL_TO_METERS(mouse_y));
+
+	b2Body* b = world->CreateBody(&body);
+
+	b2ChainShape shape;
+
+	b2Vec2* vertices = new b2Vec2[index / 2];
+
+	for (int i = 0; i < index / 2; i++) {
+		vertices[i] = { PIXEL_TO_METERS(points[2 * i]), PIXEL_TO_METERS(points[2 * i + 1]) };
+	}
+
+	shape.CreateChain(vertices, index / 2); //Difference between CreateChain() and CreateLoop()???
+
+	b2FixtureDef fixture;
+	fixture.shape = &shape;
+
+	b->CreateFixture(&fixture);
+
+	if (vertices != nullptr) //¿Dónde se tendría que hacer este delete?
+		delete[] vertices;
+	vertices = nullptr;
+
+	BodyHolder* a = new BodyHolder(b);
+	return a;
+}
+BodyHolder* ModulePhysics::CreateKChain(int mouse_x, int mouse_y, int points[], int index) {
+
+	// TODO 3: Create a chain shape using those vertices
+	// remember to convert them from pixels to meters!
+
+	b2BodyDef body;
+	body.type = b2_kinematicBody;
+
+	body.position.Set(PIXEL_TO_METERS(mouse_x), PIXEL_TO_METERS(mouse_y));
+
+	b2Body* b = world->CreateBody(&body);
+
+	b2ChainShape shape;
+
+	b2Vec2* vertices = new b2Vec2[index / 2];
+
+	for (int i = 0; i < index / 2; i++) {
+		vertices[i] = { PIXEL_TO_METERS(points[2 * i]), PIXEL_TO_METERS(points[2 * i + 1]) };
+	}
+
+	shape.CreateChain(vertices, index / 2); //Difference between CreateChain() and CreateLoop()???
+
+	b2FixtureDef fixture;
+	fixture.shape = &shape;
+
+	b->CreateFixture(&fixture);
+
+	if (vertices != nullptr) //¿Dónde se tendría que hacer este delete?
+		delete[] vertices;
+	vertices = nullptr;
 
 	BodyHolder* a = new BodyHolder(b);
 	return a;
 }
 
+//BodyHolder class methods implementation
 b2Vec2 BodyHolder::Position() {
 	
 	b2Vec2 position = body->GetPosition();
@@ -251,4 +415,31 @@ b2Vec2 BodyHolder::Position() {
 	to_return.y = METERS_TO_PIXELS(to_return.y);
 	
 	return to_return;
+}
+
+uint BodyHolder::GetType() const {
+	return body->GetFixtureList()->GetShape()->GetType();
+}
+
+float BodyHolder::GetRadius() const { //in pixels. ONLY for Circles
+	b2PolygonShape* shape = (b2PolygonShape*)body->GetFixtureList()->GetShape();
+	return shape->m_radius;
+}
+
+float BodyHolder::Get_hx() const { //in pixels. ONLY for Boxes (half width of the box)
+	b2PolygonShape* shape = (b2PolygonShape*)body->GetFixtureList()->GetShape();
+	return abs(shape->m_vertices[0].x);
+} 
+
+float BodyHolder::Get_hy() const { //in pixels. ONLY for Boxes (half height of the box)
+	b2PolygonShape* shape = (b2PolygonShape*)body->GetFixtureList()->GetShape();
+	return abs(shape->m_vertices[0].y);
+}
+
+float BodyHolder::GetRotation() const { //in degrees
+	return RADTODEG * body->GetAngle();
+}
+
+float BodyHolder::GetAngularVelocity() const {
+	return RADTODEG * body->GetAngularVelocity();
 }

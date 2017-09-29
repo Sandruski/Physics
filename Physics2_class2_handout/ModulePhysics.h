@@ -25,7 +25,16 @@ private:
 	b2Body* body;
 public:
 	BodyHolder(b2Body* body) :body(body) {}
+
+	uint GetType() const;
 	b2Vec2 Position();
+
+	float GetRadius() const; //in pixels. ONLY for Circles
+	float Get_hx() const; //in pixels. ONLY for Boxes (half width of the box)
+	float Get_hy() const; //in pixels. ONLY for Boxes (half height of the box)
+
+	float GetRotation() const; //in degrees
+	float GetAngularVelocity() const;
 };
 
 class ModulePhysics : public Module
@@ -41,9 +50,17 @@ public:
 
 	// TODO 4: Move body creation to 3 functions to create circles, rectangles and chains
 
-	BodyHolder* CreateCircle(int mouse_x, int mouse_y, int rad);
-	BodyHolder* CreateRectangle(int mouse_x, int mouse_y, int hx, int hy);
-	BodyHolder* CreateChain(int mouse_x, int mouse_y, int points[], int index);
+	BodyHolder* CreateDCircle(int mouse_x, int mouse_y, int rad);
+	BodyHolder* CreateSCircle(int mouse_x, int mouse_y, int rad);
+	BodyHolder* CreateKCircle(int mouse_x, int mouse_y, int rad);
+
+	BodyHolder* CreateDRectangle(int mouse_x, int mouse_y, int hx, int hy);
+	BodyHolder* CreateSRectangle(int mouse_x, int mouse_y, int hx, int hy);
+	BodyHolder* CreateKRectangle(int mouse_x, int mouse_y, int hx, int hy);
+
+	BodyHolder* CreateDChain(int mouse_x, int mouse_y, int points[], int index);
+	BodyHolder* CreateSChain(int mouse_x, int mouse_y, int points[], int index);
+	BodyHolder* CreateKChain(int mouse_x, int mouse_y, int points[], int index);
 
 private:
 
