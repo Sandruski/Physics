@@ -1,0 +1,15 @@
+﻿  ModuleSceneIntro.cpp
+c:\users\disob\documents\github\physics\physics2_class2_handout\box2d\box2d\common\b2math.h(54): warning C4099: 'b2Vec2': type name first seen using 'class' now seen using 'struct'
+  c:\users\disob\documents\github\physics\physics2_class2_handout\box2d\box2d\common\b2math.h(53): note: see declaration of 'b2Vec2'
+c:\users\disob\documents\github\physics\physics2_class2_handout\modulesceneintro.cpp(73): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\limits(210): warning C4577: 'noexcept' used with no exception handling mode specified; termination on exception is not guaranteed. Specify /EHsc
+  ModulePhysics.cpp
+c:\users\disob\documents\github\physics\physics2_class2_handout\box2d\box2d\common\b2math.h(54): warning C4099: 'b2Vec2': type name first seen using 'class' now seen using 'struct'
+  c:\users\disob\documents\github\physics\physics2_class2_handout\box2d\box2d\common\b2math.h(53): note: see declaration of 'b2Vec2'
+c:\users\disob\documents\github\physics\physics2_class2_handout\modulephysics.cpp(35): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\disob\documents\github\physics\physics2_class2_handout\modulephysics.cpp(250): warning C4244: '=': conversion from 'int' to 'float32', possible loss of data
+c:\users\disob\documents\github\physics\physics2_class2_handout\modulephysics.cpp(251): warning C4244: '=': conversion from 'int' to 'float32', possible loss of data
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\cmath(131): warning C4577: 'noexcept' used with no exception handling mode specified; termination on exception is not guaranteed. Specify /EHsc
+  Generating Code...
+  SDL Game.vcxproj -> C:\Users\disob\Documents\GitHub\Physics\Physics2_class2_handout\Debug\2D Physics - class 2.exe
+  SDL Game.vcxproj -> C:\Users\disob\Documents\GitHub\Physics\Physics2_class2_handout\Debug\2D Physics - class 2.pdb (Full PDB)

@@ -1,7 +1,0 @@
-﻿  ModulePhysics.cpp
-c:\users\sandraag3\documents\github\physics\physics2_class2 - handout\modulephysics.cpp(35): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\sandraag3\documents\github\physics\physics2_class2 - handout\modulephysics.cpp(90): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\sandraag3\documents\github\physics\physics2_class2 - handout\modulephysics.cpp(91): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.11.25503\include\cmath(113): warning C4577: 'noexcept' used with no exception handling mode specified; termination on exception is not guaranteed. Specify /EHsc
-  SDL Game.vcxproj -> C:\Users\sandraag3\Documents\GitHub\Physics\Physics2_class2 - handout\Debug\2D Physics - class 2.exe
-  SDL Game.vcxproj -> C:\Users\sandraag3\Documents\GitHub\Physics\Physics2_class2 - handout\Debug\2D Physics - class 2.pdb (Partial PDB)
