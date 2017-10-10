@@ -5,6 +5,9 @@
 #include "ModulePhysics.h"
 #include "math.h"
 
+#include <iostream>
+using namespace std;
+
 #include "Box2D/Box2D/Box2D.h"
 
 #ifdef _DEBUG

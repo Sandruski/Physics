@@ -103,9 +103,9 @@ update_status ModuleSceneIntro::Update()
 			b2Vec2 position = item->data->Position();
 
 			if (item->data->GetType() == b2Shape::e_circle)
-				App->renderer->Blit(circle, position.x - METERS_TO_PIXELS(item->data->GetRadius()), position.y - METERS_TO_PIXELS(item->data->GetRadius()), NULL, item->data->GetRotation(), position.x, position.y);
-			if (item->data->GetType() == b2Shape::e_polygon) 
-				App->renderer->Blit(box, position.x - METERS_TO_PIXELS(item->data->Get_hx()), position.y - METERS_TO_PIXELS(item->data->Get_hy()), NULL, item->data->GetRotation(), position.x, position.y);
+				App->renderer->Blit(circle, position.x - METERS_TO_PIXELS(item->data->GetRadius()), position.y - METERS_TO_PIXELS(item->data->GetRadius()), NULL, 1, item->data->GetRotation());
+			if (item->data->GetType() == b2Shape::e_polygon)
+				App->renderer->Blit(box, position.x - METERS_TO_PIXELS(item->data->Get_hx()), position.y - METERS_TO_PIXELS(item->data->Get_hy()), NULL, 1, item->data->GetRotation());
 			if (item->data->GetType() == b2Shape::e_chain)
 				App->renderer->Blit(rick, position.x - METERS_TO_PIXELS(item->data->GetRadius()), position.y - METERS_TO_PIXELS(item->data->GetRadius()));
 			
